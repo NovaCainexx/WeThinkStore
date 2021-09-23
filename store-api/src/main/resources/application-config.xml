@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd 
+    http://www.springframework.org/schema/context/ 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="config"
+		class="za.co.africanbank.secret.service.ServiceConfiguration">
+		<property name="connectionUrl"
+			value="http://192.168.6.63:8200" />
+		<property name="username" value="" />
+		<property name="password" value="s.XBgK5AkI5Jo8adtXZXM4z079" />
+		<property name="connectTimeout" value="60000" />
+		<property name="readTimeout" value="60000" />
+	</bean>
+
+	<util:list id="platforms" value-type="java.lang.String">
+		<value>dev</value>
+		<value>int</value>
+		<value>stg</value>
+		<value>trn</value>
+		<value>prd</value>
+	</util:list>
+	
+	<util:list id="sites" value-type="java.lang.String">
+		<value>mid</value>
+		<value>nnoc</value>
+	</util:list>
+	
+	<util:list id="resources" value-type="java.lang.String">
+		<value>db</value>
+		<value>mq</value>
+	</util:list>
+
+	<bean id="userRepository"
+		class="za.co.africanbank.secret.service.impl.UserRepositoryImpl">
+		<property name="key" value="password1" />
+	</bean>
+
+	<bean id="authenticationProvider"
+		class="za.co.africanbank.secret.service.impl.VaultAuthenticationManager">
+	</bean>
+
+	<bean id="secretReader"
+		class="za.co.africanbank.secret.service.vault.impl.SecretsBackendService">
+		<constructor-arg index="0" ref="config" />
+	</bean>
+
+	<bean id="pushDataService"
+		class="za.co.africanbank.secret.service.PushDataService">
+		<property name="reader" ref="secretReader" />
+	</bean>
+	
+	<bean id="cryptoService" class="za.co.africanbank.secret.utils.DataCryptoService">
+		<property name="algo" value="PBEWithMD5AndTripleDES" />
+	</bean>
+
+	<bean id="pathParser"
+		class="za.co.africanbank.secret.utils.PathParserImpl">
+		<property name="metaOffset" value="4" />
+		<property name="platforms" ref="platforms" />
+		<property name="sites" ref="sites" />
+		<property name="resources" ref="resources" />
+	</bean>
+</beans> 
