@@ -37,6 +37,7 @@ import za.co.wethink.store.models.Manager;
 import za.co.wethink.store.models.Role;
 import za.co.wethink.store.models.UserEntity;
 import za.co.wethink.store.security.jwt.JwtUtils;
+import za.co.wethink.store.service.UserRepositoryImpl;
 
 /**
  * 

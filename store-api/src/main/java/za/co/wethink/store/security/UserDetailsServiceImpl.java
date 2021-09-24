@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import za.co.wethink.store.models.Manager;
 import za.co.wethink.store.models.UserEntity;
+import za.co.wethink.store.service.UserRepositoryImpl;
 
 
 @Service
