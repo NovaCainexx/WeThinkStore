@@ -10,5 +10,11 @@
     http://www.springframework.org/schema/context/ 
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<bean id="userRepository" class="za.co.wethink.store.service.UserRepositoryImpl">
+		<property name="key" value="ABC123" />
+	</bean>
 	
+	<bean id="authenticationProvider"
+		class="za.co.wethink.store.security.VaultAuthenticationManager">
+	</bean>
 </beans> 
