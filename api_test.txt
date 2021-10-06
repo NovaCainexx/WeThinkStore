@@ -1,0 +1,33 @@
+http://localhost:8099/wethinkstore/auth/logon
+POST 
+request :
+
+{
+    "username":"secret-changer",
+    "password":"ABC123",
+    "roles":["user","admin"]
+}
+
+sample response :
+
+{
+    "username": "secret-changer",
+    "roles": [
+        "APP",
+        "LOGIN",
+        "ADMIN"
+    ],
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZWNyZXQtY2hhbmdlciIsImlhdCI6MTYzMzUzOTAzNiwiZXhwIjoxNjMzNjI1NDM2fQ.bcW3e-XOTgIM0hGoVMKXk9BN0PCvCQxserTxE1GZaUCQQ_YIK2wUuhWbuXv6rlmUx7V_0g2JwFfBo8hola_KwA",
+    "tokenType": "Bearer"
+}
+
+{
+    "username": "secret-changer",
+    "roles": [
+        "APP",
+        "LOGIN",
+        "ADMIN"
+    ],
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZWNyZXQtY2hhbmdlciIsImlhdCI6MTYzMzUzOTAzNiwiZXhwIjoxNjMzNjI1NDM2fQ.bcW3e-XOTgIM0hGoVMKXk9BN0PCvCQxserTxE1GZaUCQQ_YIK2wUuhWbuXv6rlmUx7V_0g2JwFfBo8hola_KwA",
+    "tokenType": "Bearer"
+}
